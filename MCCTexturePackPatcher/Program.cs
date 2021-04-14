@@ -251,6 +251,11 @@ namespace MCCTexturePackPatcher
                 }
                 key.Close();
             }
+            
+            else if (File.Exists("C:\\Program Files\\ModifiableWindowsApps\\HaloMCC\\mcclauncher.exe"))
+            {
+                return "C:\\Program Files\\ModifiableWindowsApps\\HaloMCC";
+            }
 
             return null;
         }
