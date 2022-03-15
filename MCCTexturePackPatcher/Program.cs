@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Win32;
@@ -11,6 +11,8 @@ namespace MCCTexturePackPatcher
     {
         static void Main(string[] args)
         {
+            Console.Title = "MCCTexturePackPatcher";
+
             if (!File.Exists("Files\\" + "texturepacks.txt"))
             {
                 Console.WriteLine("Unable to find TexturePacks.txt - create one in order to use this program.");
@@ -251,10 +253,14 @@ namespace MCCTexturePackPatcher
                 }
                 key.Close();
             }
-            
             else if (File.Exists("C:\\Program Files\\ModifiableWindowsApps\\HaloMCC\\mcclauncher.exe"))
             {
                 return "C:\\Program Files\\ModifiableWindowsApps\\HaloMCC";
+            }
+            else
+            {
+                Console.WriteLine("Couldn't find MCC install location. Enter the path to your MCC folder in order to continue ie:\n\"C:\\Program Files (x86)\\Steam\\steamapps\\common\\Halo The Master Chief Collection\"");
+                return Console.ReadLine();
             }
 
             return null;
