@@ -229,41 +229,8 @@ namespace MCCTexturePackPatcher
 
         private static string GetDirectory() //thanks jerryurenaa
         {
-            string displayName;
-            string InstallPath;
-            string registryKey = @"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall";
-
-            //64 bits computer
-            RegistryKey key64 = RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry64);
-            RegistryKey key = key64.OpenSubKey(registryKey);
-
-            if (key != null)
-            {
-                foreach (RegistryKey subkey in key.GetSubKeyNames().Select(keyName => key.OpenSubKey(keyName)))
-                {
-                    displayName = subkey.GetValue("DisplayName") as string;
-                    if (displayName != null && displayName.Equals("Halo: The Master Chief Collection"))
-                    {
-
-                        InstallPath = subkey.GetValue("InstallLocation").ToString();
-
-                        return InstallPath; //or displayName
-
-                    }
-                }
-                key.Close();
-            }
-            else if (File.Exists("C:\\Program Files\\ModifiableWindowsApps\\HaloMCC\\mcclauncher.exe"))
-            {
-                return "C:\\Program Files\\ModifiableWindowsApps\\HaloMCC";
-            }
-            else
-            {
-                Console.WriteLine("Couldn't find MCC install location. Enter the path to your MCC folder in order to continue ie:\n\"C:\\Program Files (x86)\\Steam\\steamapps\\common\\Halo The Master Chief Collection\"");
-                return Console.ReadLine();
-            }
-
-            return null;
+            Console.WriteLine("Enter the path to your MCC folder in order to continue ie:\n\"C:\\Program Files (x86)\\Steam\\steamapps\\common\\Halo The Master Chief Collection\"");
+            return Console.ReadLine();
         }
     }
 
